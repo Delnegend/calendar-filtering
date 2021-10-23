@@ -4,7 +4,6 @@ const fs = require('fs')
 const clone = require('just-clone')
 const _ = require('lodash')
 
-// const calendarURL = "https://calendar.google.com/calendar/ical/v0qbbfube10coopf5vfiovf5qo%40group.calendar.google.com/public/basic.ics";
 const calendarURL = "http://127.0.0.1:6969/basic.ics"
 const classesToRemove = [
   "[B1.09]",
