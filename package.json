@@ -4,29 +4,25 @@
   "description": "",
   "main": "App.js",
   "scripts": {
-    "dev": "nodemon --inspect .\\App.js",
-    "cls": "cls",
-    "test_": "node App.js",
-    "test": "run-s cls test_",
-    "server": "http-server ./ -p 6969"
+    "dev": "nodemon --inspect .\\App.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.23.0",
+    "cal-parser": "^1.0.1",
     "express": "^4.17.1",
-    "file-saver": "^2.0.5",
-    "http-server": "^14.0.0",
+    "ical": "^0.8.0",
     "ical-generator": "^3.0.1",
-    "ical2json": "^3.0.0",
+    "ical-parser": "^1.2.0",
     "immer": "^9.0.6",
-    "just-clone": "^3.2.1",
+    "just-clone": "^4.0.0",
     "lodash": "^4.17.21",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "rrule": "^2.6.8"
   },
   "devDependencies": {
-    "eslint": "^8.0.1",
-    "eslint-config-google": "^0.14.0",
-    "prettier": "^2.4.1"
+    "eslint": "^8.1.0",
+    "eslint-config-google": "^0.14.0"
   }
 }
