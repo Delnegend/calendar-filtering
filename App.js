@@ -15,8 +15,11 @@ app.listen(PORT, () => {
 });
 
 app.get('/', async (req, res) => {
-  let userConfig = parseUserConfig(req.query.userConfig);
-
+  let userConfig = parseUserConfig(req.query?.userConfig);
+  if (!userConfig) {
+    res.setHeader('Content-type', 'application/json');
+    res.end(JSON.stringify('userConfig doesn\'t exist'));
+  }
   let rawCal = await axios.get(userConfig.url);
   let jsonCal = convert(rawCal.data);
   let events = clone(jsonCal.VCALENDAR[0].VEVENT);
@@ -66,5 +69,5 @@ app.get('/', async (req, res) => {
 
   // ENABLE FOR PRODUCTION
   newCalendar.serve(res);
-  console.log('requested');
+  // console.log('requested');
 });
