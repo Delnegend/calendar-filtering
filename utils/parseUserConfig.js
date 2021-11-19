@@ -5,6 +5,9 @@ const parseUserConfig = (data_) => {
     'B1_L3': 'https://calendar.google.com/calendar/ical/c_fsjo0lba0dfq79odbo46jer5fg%40group.calendar.google.com/public/basic.ics',
     'dev': 'http://localhost:6969/basic.ics',
   */
+  if (!data_) {
+    return void 0;
+  }
   const data = JSON.parse(Buffer.from(data_, 'base64').toString('utf-8'));
   const config = {
     'url': data.url ? data.url : 'https://calendar.google.com/calendar/ical/v0qbbfube10coopf5vfiovf5qo%40group.calendar.google.com/public/basic.ics',
@@ -27,11 +30,8 @@ const parseUserConfig = (data_) => {
       'L1.6',
       'L1.7',
     ],
-    // 'matchString': data.matchString ? data.matchString : [
-    //   'English B1',
-    //   'Semester I',
-    //   'English',
-    // ],
+    'matchString': data.matchString ? data.matchString : null,
+    'limit': data.limit ? data.limit : null,
     // 'limit': {
     //   'start': {
     //     'year': 2021,
