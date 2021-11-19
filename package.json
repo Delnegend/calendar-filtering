@@ -6,7 +6,8 @@
   "scripts": {
     "app_server": "nodemon --inspect .\\App.js",
     "host_ical_file": "python -m http.server 6969",
-    "dev": "run-p app_server host_ical_file"
+    "dev": "run-p app_server host_ical_file",
+    "start": "node App.js"
   },
   "author": "",
   "license": "ISC",
