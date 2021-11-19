@@ -15,10 +15,13 @@ app.listen(PORT, () => {
 });
 
 app.get('/', async (req, res) => {
-  let userConfig = parseUserConfig(req.query?.userConfig);
+  let userConfigData = await axios.get(req.query?.userConfig);
+  let userConfig = parseUserConfig(userConfigData.data);
+  // console.log(typeof userConfigData.data);
+  // res.end();
   if (!userConfig) {
     res.setHeader('Content-type', 'application/json');
-    res.end(JSON.stringify('userConfig doesn\'t exist'));
+    res.end(JSON.stringify('userConfig unvalid'));
   }
   let rawCal = await axios.get(userConfig.url);
   let jsonCal = convert(rawCal.data);
