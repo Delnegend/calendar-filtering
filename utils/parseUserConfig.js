@@ -1,10 +1,11 @@
-const parseUserConfig = (data) => {
+const parseUserConfig = (data_) => {
   /*
     'B1_L1': 'https://calendar.google.com/calendar/ical/v0qbbfube10coopf5vfiovf5qo%40group.calendar.google.com/public/basic.ics',
     'B1_L2': 'https://calendar.google.com/calendar/ical/c_gj0263fted8l7qfm15shi2069c%40group.calendar.google.com/public/basic.ics',
     'B1_L3': 'https://calendar.google.com/calendar/ical/c_fsjo0lba0dfq79odbo46jer5fg%40group.calendar.google.com/public/basic.ics',
     'dev': 'http://localhost:6969/basic.ics',
   */
+  const data = JSON.parse(Buffer.from(data_, 'base64').toString('utf-8'));
   const config = {
     'url': data.url ? data.url : 'https://calendar.google.com/calendar/ical/v0qbbfube10coopf5vfiovf5qo%40group.calendar.google.com/public/basic.ics',
     'name': data.name ? data.name : 'My Calendar',
