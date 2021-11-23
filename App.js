@@ -13,16 +13,17 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on ::${PORT}`);
 });
+const throwErr = (err, req, res) => {
+  res.setHeader('Content-type', 'application/json');
+  req.connection.destroy();
+  res.end(JSON.stringify(err));
+};
 
 app.get('/', async (req, res) => {
-  let userConfigData = await axios.get(req.query?.userConfig);
+  userConfigData = await req.query?.userConfig ? await axios.get(req.query?.userConfig) : void 0;
+  if (!userConfigData) throwErr('userConfig unvalid or not found', req, res);
   let userConfig = parseUserConfig(userConfigData.data);
-  // console.log(typeof userConfigData.data);
-  // res.end();
-  if (!userConfig) {
-    res.setHeader('Content-type', 'application/json');
-    res.end(JSON.stringify('userConfig unvalid'));
-  }
+  // if (!userConfigData) throwErr('userConfig unvalid or not found');
   let rawCal = await axios.get(userConfig.url);
   let jsonCal = convert(rawCal.data);
   let events = clone(jsonCal.VCALENDAR[0].VEVENT);
